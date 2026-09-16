@@ -15,12 +15,11 @@ record ReportSection(String heading, Kind kind, List<String> items) {
         if (items == null || items.isEmpty()) {
             throw new IllegalArgumentException("Section must contain at least one item");
         }
-        for (String item : items) {
-            TextValidation.requireSingleLine(item, "Section item");
-        }
         if (kind == Kind.PARAGRAPH && items.size() != 1) {
             throw new IllegalArgumentException("Paragraph must contain exactly one item");
         }
-        items = List.copyOf(items);
+        items = items.stream()
+                .map(item -> TextValidation.requireSingleLine(item, "Section item"))
+                .toList();
     }
 }

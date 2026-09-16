@@ -22,6 +22,12 @@ public final class ReportBuilderTest {
     }
 
     private static void checkContract(String name, Supplier<ReportBuilder> factory) {
+        test(name + ": surrounding whitespace is normalized", () -> {
+            Report padded = factory.get().title("  Title\t")
+                    .addParagraph("  Intro ", "    Text\t")
+                    .addBulletList(" Goals ", List.of("  One ", "\tTwo")).build();
+            equal(sample(factory.get()), padded);
+        });
         test(name + ": missing title", () -> expect(IllegalStateException.class,
                 "requires a title", () -> factory.get().addParagraph("Heading", "Text").build()));
         test(name + ": missing sections", () -> expect(IllegalStateException.class,

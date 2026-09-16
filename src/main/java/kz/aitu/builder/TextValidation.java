@@ -16,6 +16,6 @@ final class TextValidation {
         if (value.contains("\n") || value.contains("\r")) {
             throw new IllegalArgumentException(field + " must be a single line");
         }
-        return value;
+        return value.strip();
     }
 }

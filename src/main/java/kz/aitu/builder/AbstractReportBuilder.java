@@ -3,7 +3,7 @@ package kz.aitu.builder;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractReportBuilder implements ReportBuilder {
+abstract class AbstractReportBuilder implements ReportBuilder {
     private String title;
     private final List<ReportSection> sections = new ArrayList<>();
 
