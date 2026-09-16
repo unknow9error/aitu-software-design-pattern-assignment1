@@ -21,7 +21,7 @@ public final class MarkdownReportBuilder extends AbstractReportBuilder {
             }
             markdown.append('\n');
         }
-        return markdown.toString();
+        return markdown.toString().stripTrailing() + "\n";
     }
 
     private static String escape(String text) {

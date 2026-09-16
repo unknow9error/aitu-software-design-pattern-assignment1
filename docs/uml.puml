@@ -1,0 +1,58 @@
+@startuml
+title Study Report Builder - core pattern roles
+skinparam classAttributeIconSize 0
+hide empty members
+
+class Main <<Client>> {
+  + {static} main(args: String[]): void
+}
+class ReportDirector <<Director>> {
+  + createStudyReport(builder: ReportBuilder): Report
+}
+interface ReportBuilder <<Builder>> {
+  + title(title: String): ReportBuilder
+  + addParagraph(heading: String, text: String): ReportBuilder
+  + addBulletList(heading: String, items: List<String>): ReportBuilder
+  + build(): Report
+}
+abstract class AbstractReportBuilder {
+  - title: String
+  - sections: List<ReportSection>
+  + build(): Report
+  # {abstract} format(): ReportFormat
+  # {abstract} render(title: String, sections: List<ReportSection>): String
+}
+class MarkdownReportBuilder <<ConcreteBuilder>> {
+  # format(): ReportFormat
+  # render(title: String, sections: List<ReportSection>): String
+}
+class HtmlReportBuilder <<ConcreteBuilder>> {
+  # format(): ReportFormat
+  # render(title: String, sections: List<ReportSection>): String
+}
+class Report <<record / Product>> {
+  - title: String
+  - format: ReportFormat
+  - content: String
+  + title(): String
+  + format(): ReportFormat
+  + content(): String
+}
+
+Main ..> ReportDirector : calls
+Main ..> MarkdownReportBuilder : creates
+Main ..> HtmlReportBuilder : creates
+Main ..> Report : saves
+ReportDirector ..> ReportBuilder : uses steps
+ReportDirector ..> Report : returns
+ReportBuilder <|.. AbstractReportBuilder
+AbstractReportBuilder <|-- MarkdownReportBuilder
+AbstractReportBuilder <|-- HtmlReportBuilder
+AbstractReportBuilder ..> Report : creates
+
+note bottom of AbstractReportBuilder
+  Implements all construction steps.
+  ReportSection, TextValidation and ReportFormat
+  are supporting types omitted for clarity.
+end note
+@enduml

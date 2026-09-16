@@ -100,7 +100,7 @@ public final class ReportBuilderTest {
         Report report = sample(new MarkdownReportBuilder());
         equal(ReportFormat.MARKDOWN, report.format());
         equal("md", report.format().extension());
-        equal("# Title\n\n## Intro\n\nText\n\n## Goals\n\n- One\n- Two\n\n", report.content());
+        equal("# Title\n\n## Intro\n\nText\n\n## Goals\n\n- One\n- Two\n", report.content());
     }
 
     private static void htmlRepresentation() {

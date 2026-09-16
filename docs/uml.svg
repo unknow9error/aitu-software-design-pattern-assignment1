@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="500" height="452" preserveAspectRatio="xMinYMin meet" viewBox="0 0 500 452" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="500" height="452"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-452)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="377" width="115" height="68" style="stroke: rgb(9%,19%,28%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="0" y="411" width="115" height="34" style="stroke: rgb(9%,19%,28%); stroke-linecap: butt; stroke-width: 1; fill: rgb(92%,95%,96%); fill-rule: evenodd;"/>
+			<text x="39.155" y="433" style="font-family: Helvetica; font-size: 7.5px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,866) scale(1,-1)">&lt;&lt;Client&gt;&gt;</text>
+			<text x="47.249" y="419" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,838) scale(1,-1)">Main</text>
+			<text x="7" y="396" style="font-family: Helvetica; font-size: 7.6px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,792) scale(1,-1)">+ main(args): void</text>
+			<rect x="147" y="377" width="168" height="68" style="stroke: rgb(9%,19%,28%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="147" y="411" width="168" height="34" style="stroke: rgb(9%,19%,28%); stroke-linecap: butt; stroke-width: 1; fill: rgb(92%,95%,96%); fill-rule: evenodd;"/>
+			<text x="209.115" y="433" style="font-family: Helvetica; font-size: 7.5px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,866) scale(1,-1)">&lt;&lt;Director&gt;&gt;</text>
+			<text x="199.248" y="419" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,838) scale(1,-1)">ReportDirector</text>
+			<text x="154" y="396" style="font-family: Helvetica; font-size: 7.6px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,792) scale(1,-1)">+ createStudyReport(builder)</text>
+			<text x="154" y="384" style="font-family: Helvetica; font-size: 7.6px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,768) scale(1,-1)">    : Report</text>
+			<rect x="365" y="349" width="135" height="96" style="stroke: rgb(9%,19%,28%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="365" y="411" width="135" height="34" style="stroke: rgb(9%,19%,28%); stroke-linecap: butt; stroke-width: 1; fill: rgb(92%,95%,96%); fill-rule: evenodd;"/>
+			<text x="397.0625" y="433" style="font-family: Helvetica; font-size: 7.5px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,866) scale(1,-1)">&lt;&lt;record / Product&gt;&gt;</text>
+			<text x="418.001" y="419" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,838) scale(1,-1)">Report</text>
+			<text x="372" y="396" style="font-family: Helvetica; font-size: 7.6px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,792) scale(1,-1)">- title: String</text>
+			<text x="372" y="384" style="font-family: Helvetica; font-size: 7.6px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,768) scale(1,-1)">- format: ReportFormat</text>
+			<text x="372" y="372" style="font-family: Helvetica; font-size: 7.6px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,744) scale(1,-1)">- content: String</text>
+			<rect x="117" y="241" width="240" height="104" style="stroke: rgb(9%,19%,28%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="117" y="311" width="240" height="34" style="stroke: rgb(9%,19%,28%); stroke-linecap: butt; stroke-width: 1; fill: rgb(92%,95%,96%); fill-rule: evenodd;"/>
+			<text x="199.06125" y="333" style="font-family: Helvetica; font-size: 7.5px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,666) scale(1,-1)">&lt;&lt;interface / Builder&gt;&gt;</text>
+			<text x="206.9985" y="319" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,638) scale(1,-1)">ReportBuilder</text>
+			<text x="124" y="296" style="font-family: Helvetica; font-size: 7.6px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,592) scale(1,-1)">+ title(title): ReportBuilder</text>
+			<text x="124" y="284" style="font-family: Helvetica; font-size: 7.6px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,568) scale(1,-1)">+ addParagraph(heading, text): ReportBuilder</text>
+			<text x="124" y="272" style="font-family: Helvetica; font-size: 7.6px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,544) scale(1,-1)">+ addBulletList(heading, items): ReportBuilder</text>
+			<text x="124" y="260" style="font-family: Helvetica; font-size: 7.6px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,520) scale(1,-1)">+ build(): Report</text>
+			<rect x="117" y="99" width="240" height="112" style="stroke: rgb(9%,19%,28%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="117" y="177" width="240" height="34" style="stroke: rgb(9%,19%,28%); stroke-linecap: butt; stroke-width: 1; fill: rgb(92%,95%,96%); fill-rule: evenodd;"/>
+			<text x="214.90125" y="199" style="font-family: Helvetica; font-size: 7.5px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,398) scale(1,-1)">&lt;&lt;abstract&gt;&gt;</text>
+			<text x="188.7465" y="185" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,370) scale(1,-1)">AbstractReportBuilder</text>
+			<text x="124" y="162" style="font-family: Helvetica; font-size: 7.6px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,324) scale(1,-1)">- title: String</text>
+			<text x="124" y="150" style="font-family: Helvetica; font-size: 7.6px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,300) scale(1,-1)">- sections: List&lt;ReportSection&gt;</text>
+			<text x="124" y="138" style="font-family: Helvetica; font-size: 7.6px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,276) scale(1,-1)">+ build(): Report</text>
+			<text x="124" y="126" style="font-family: Helvetica; font-size: 7.6px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,252) scale(1,-1)"># format(): ReportFormat</text>
+			<text x="124" y="114" style="font-family: Helvetica; font-size: 7.6px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,228) scale(1,-1)"># render(title, sections): String</text>
+			<rect x="0" y="0" width="213" height="68" style="stroke: rgb(9%,19%,28%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="0" y="34" width="213" height="34" style="stroke: rgb(9%,19%,28%); stroke-linecap: butt; stroke-width: 1; fill: rgb(92%,95%,96%); fill-rule: evenodd;"/>
+			<text x="70.85624999999999" y="56" style="font-family: Helvetica; font-size: 7.5px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,112) scale(1,-1)">&lt;&lt;ConcreteBuilder&gt;&gt;</text>
+			<text x="54.246" y="42" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,84) scale(1,-1)">MarkdownReportBuilder</text>
+			<text x="7" y="19" style="font-family: Helvetica; font-size: 7.6px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,38) scale(1,-1)"># format(): ReportFormat</text>
+			<text x="7" y="7" style="font-family: Helvetica; font-size: 7.6px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,14) scale(1,-1)"># render(title, sections): String</text>
+			<rect x="287" y="0" width="213" height="68" style="stroke: rgb(9%,19%,28%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="287" y="34" width="213" height="34" style="stroke: rgb(9%,19%,28%); stroke-linecap: butt; stroke-width: 1; fill: rgb(92%,95%,96%); fill-rule: evenodd;"/>
+			<text x="357.85625" y="56" style="font-family: Helvetica; font-size: 7.5px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,112) scale(1,-1)">&lt;&lt;ConcreteBuilder&gt;&gt;</text>
+			<text x="353.4995" y="42" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,84) scale(1,-1)">HtmlReportBuilder</text>
+			<text x="294" y="19" style="font-family: Helvetica; font-size: 7.6px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,38) scale(1,-1)"># format(): ReportFormat</text>
+			<text x="294" y="7" style="font-family: Helvetica; font-size: 7.6px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,14) scale(1,-1)"># render(title, sections): String</text>
+			<polyline points="115 410, 147 410" style="stroke: rgb(32%,39%,47%); stroke-linecap: butt; stroke-width: 0.9; fill: None; fill-rule: evenodd; stroke-dasharray: 4, 3;"/>
+			<polyline points="138 414, 147 410, 138 406" style="stroke: rgb(32%,39%,47%); stroke-linecap: butt; stroke-width: 1; fill: None; fill-rule: evenodd;"/>
+			<polyline points="232 377, 232 345" style="stroke: rgb(32%,39%,47%); stroke-linecap: butt; stroke-width: 0.9; fill: None; fill-rule: evenodd; stroke-dasharray: 4, 3;"/>
+			<polyline points="236 354, 232 345, 228 354" style="stroke: rgb(32%,39%,47%); stroke-linecap: butt; stroke-width: 1; fill: None; fill-rule: evenodd;"/>
+			<text x="242" y="359" style="font-family: Helvetica; font-size: 7px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,718) scale(1,-1)">uses</text>
+			<polyline points="237 211, 237 241" style="stroke: rgb(32%,39%,47%); stroke-linecap: butt; stroke-width: 0.9; fill: None; fill-rule: evenodd; stroke-dasharray: 4, 3;"/>
+			<polygon points="233 232, 237 241, 241 232" style="stroke: rgb(32%,39%,47%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<polyline points="106 68, 106 82, 180 82, 180 99" style="stroke: rgb(32%,39%,47%); stroke-linecap: butt; stroke-width: 0.9; fill: None; fill-rule: evenodd;"/>
+			<polygon points="176 90, 180 99, 184 90" style="stroke: rgb(32%,39%,47%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<polyline points="394 68, 394 82, 295 82, 295 99" style="stroke: rgb(32%,39%,47%); stroke-linecap: butt; stroke-width: 0.9; fill: None; fill-rule: evenodd;"/>
+			<polygon points="291 90, 295 99, 299 90" style="stroke: rgb(32%,39%,47%); stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<polyline points="357 163, 431 163, 431 349" style="stroke: rgb(32%,39%,47%); stroke-linecap: butt; stroke-width: 0.9; fill: None; fill-rule: evenodd; stroke-dasharray: 4, 3;"/>
+			<polyline points="427 340, 431 349, 435 340" style="stroke: rgb(32%,39%,47%); stroke-linecap: butt; stroke-width: 1; fill: None; fill-rule: evenodd;"/>
+			<text x="437" y="264" style="font-family: Helvetica; font-size: 7px;fill: rgb(9%,19%,28%); stroke:none;" transform="translate(0,528) scale(1,-1)">creates</text>
+		</g>
+	</g>
+</svg>
