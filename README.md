@@ -51,11 +51,7 @@ A fresh builder should be used for each report: `build()` does not clear its dat
 ## Files
 
 - `src/main/java/kz/aitu/builder/` - the four program classes.
-- [UML source](docs/uml.puml) and the diagram below.
-- [Report](docs/report.md) / [PDF](output/pdf/assignment-1-report.pdf).
-- [Defense notes in Russian](docs/DEFENSE_RU.md).
-
-![Builder class diagram](docs/uml.svg)
+- [PDF report with UML](output/pdf/assignment-1-report.pdf).
 
 This simplified version has one concrete builder. The original assignment requires
 an interface or abstract Builder and at least two ConcreteBuilders with different
