@@ -7,4 +7,4 @@ Goal
 Learn to create an object step by step
 
 Result
-The same steps produce plain text or HTML
+A report created step by step

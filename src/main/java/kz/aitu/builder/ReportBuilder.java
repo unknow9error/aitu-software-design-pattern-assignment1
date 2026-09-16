@@ -1,6 +1,6 @@
 package kz.aitu.builder;
 
-public abstract class ReportBuilder {
+public class ReportBuilder {
     private String title = "";
     private String sections = "";
 
@@ -33,7 +33,11 @@ public abstract class ReportBuilder {
         }
     }
 
-    protected abstract String formatSection(String heading, String text);
+    private String formatSection(String heading, String text) {
+        return heading + "\n" + text + "\n\n";
+    }
 
-    protected abstract String formatReport(String title, String sections);
+    private String formatReport(String title, String sections) {
+        return title + "\n\n" + sections;
+    }
 }

@@ -16,5 +16,5 @@ jobs:
           java-version: '17'
       - name: Compile and test
         run: bash scripts/test.sh
-      - name: Run both report builders
+      - name: Run the report builder
         run: bash scripts/run.sh

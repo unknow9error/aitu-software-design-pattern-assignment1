@@ -1,5 +1,5 @@
 @startuml
-title Study Report Builder
+title Study Report - One Builder
 skinparam classAttributeIconSize 0
 hide empty members
 
@@ -10,23 +10,15 @@ class Report <<Product>> {
   + getTitle(): String
   + getContent(): String
 }
-abstract class ReportBuilder <<Builder>> {
+class ReportBuilder <<Builder>> {
   - title: String
   - sections: String
   + setTitle(title: String): ReportBuilder
   + addSection(heading: String, text: String): ReportBuilder
   + build(): Report
   - checkText(text: String, field: String): void
-  # {abstract} formatSection(heading: String, text: String): String
-  # {abstract} formatReport(title: String, sections: String): String
-}
-class PlainTextReportBuilder <<ConcreteBuilder>> {
-  # formatSection(heading: String, text: String): String
-  # formatReport(title: String, sections: String): String
-}
-class HtmlReportBuilder <<ConcreteBuilder>> {
-  # formatSection(heading: String, text: String): String
-  # formatReport(title: String, sections: String): String
+  - formatSection(heading: String, text: String): String
+  - formatReport(title: String, sections: String): String
 }
 class ReportDirector <<Director>> {
   + createStudyReport(builder: ReportBuilder): Report
@@ -35,12 +27,9 @@ class Main <<Client>> {
   + {static} main(args: String[]): void
 }
 
-ReportBuilder <|-- PlainTextReportBuilder
-ReportBuilder <|-- HtmlReportBuilder
 ReportBuilder ..> Report : creates
 ReportDirector ..> ReportBuilder : calls steps
 Main ..> ReportDirector : calls
-Main ..> PlainTextReportBuilder : creates
-Main ..> HtmlReportBuilder : creates
+Main ..> ReportBuilder : creates
 Main ..> Report : prints
 @enduml

@@ -4,15 +4,12 @@ public class Main {
     public static void main(String[] args) {
         ReportDirector director = new ReportDirector();
 
-        Report textReport = director.createStudyReport(new PlainTextReportBuilder());
-        Report htmlReport = director.createStudyReport(new HtmlReportBuilder());
+        Report textReport = director.createStudyReport(new ReportBuilder());
 
         System.out.println("PLAIN TEXT REPORT:");
         System.out.println(textReport.getContent());
-        System.out.println("HTML REPORT:");
-        System.out.println(htmlReport.getContent());
 
-        Report customReport = new PlainTextReportBuilder()
+        Report customReport = new ReportBuilder()
                 .setTitle("My homework")
                 .addSection("Task", "Practice method chaining")
                 .build();
