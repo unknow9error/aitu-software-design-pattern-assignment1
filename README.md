@@ -8,15 +8,15 @@ The program builds a plain text study report using one `ReportBuilder` class.
 Open the project in IntelliJ IDEA, choose JDK 17, mark `src/main/java` as
 Sources Root, and run `kz.aitu.builder.Main`.
 
-Or run these commands from the repository folder (Bash / Git Bash / WSL):
+Or compile and run from the repository folder:
 
 ```bash
-bash scripts/run.sh
-bash scripts/test.sh
+javac --release 17 -d build src/main/java/kz/aitu/builder/*.java
+java -cp build kz.aitu.builder.Main
 ```
 
-No external Java libraries are needed. The demo prints a report built through the Director and one
-custom report built directly. The test class contains five short checks.
+No external Java libraries are needed. The demo prints a report built through the
+Director and one custom report built directly.
 
 ## Four classes
 
@@ -51,8 +51,6 @@ A fresh builder should be used for each report: `build()` does not clear its dat
 ## Files
 
 - `src/main/java/kz/aitu/builder/` - the four program classes.
-- `src/test/java/kz/aitu/builder/ReportBuilderTest.java` - five simple checks.
-- `examples/` - sample plain text output.
 - [UML source](docs/uml.puml) and the diagram below.
 - [Report](docs/report.md) / [PDF](output/pdf/assignment-1-report.pdf).
 - [Defense notes in Russian](docs/DEFENSE_RU.md).
