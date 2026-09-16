@@ -1,150 +1,114 @@
 # Assignment 1: Builder Pattern
 
-Study Report Generator - Markdown and HTML
+Study report in plain text and HTML
 
-Course: ShP-2216 - Software Design Patterns (OP 6B06102)
-
-Institution: Astana IT University, School of Computer Engineering
-
-Implementation: Java 17 | Repository owner: unknow9error
+Astana IT University | ShP-2216 - Software Design Patterns | Java 17
 
 ## 1. Introduction
 
-The chosen product is a study report consisting of a title and an ordered collection of sections. A section is either a paragraph with a heading or a bullet list with a heading. Reports are built incrementally and can have different numbers of sections. The result must be available as Markdown for repository documentation and as HTML for viewing in a browser.
+The product is a study report with a title and several sections. Each section has a heading and some text. Builder lets the program add these parts step by step and create the finished Report by calling build().
 
-Builder fits this problem because it separates the steps used to assemble a report from the syntax used to represent it. The client calls title(), addParagraph() and addBulletList(), then asks build() for the completed product. The same steps can produce either representation. This is more useful than a large constructor when the number and ordering of sections vary.
+There are two concrete builders. PlainTextReportBuilder uses line breaks, while HtmlReportBuilder uses HTML tags and a complete HTML document. Both receive the same steps from ReportDirector. This shows how one construction process can produce different representations.
 
-The product is the immutable Report record. Its fields are title, ReportFormat and the serialized content. The two concrete builders produce structurally different documents: Markdown uses heading prefixes and list markers; HTML includes a document declaration, metadata, semantic sections and list elements. They do not merely select different values for an otherwise identical output.
-
-## Design decisions
-
-ReportBuilder is the public fluent interface. AbstractReportBuilder is an internal base class that owns construction state, shared validation and final product creation. The concrete builders implement only format selection and serialization. ReportDirector supplies a reusable study-report recipe through the interface. Main selects builders and performs console/file output.
-
-Serialization happens at build() after section data has been collected. This keeps validation and construction independent from markup and makes previous products stable when a builder is reused. A Director is useful for repeatable reports, but custom reports can use the fluent API directly.
-
-For a tiny fixed report, a function or constructor would be simpler. The extra types are justified here by variable section construction and two output representations. The scope is deliberately limited to plain text paragraphs and bullet lists.
-
-<!-- pagebreak -->
+Report is a normal class with a constructor, two private fields and getters. ReportBuilder is an abstract class with shared construction steps and two abstract formatting methods. Main chooses the builders and prints the results. The example uses only basic classes, inheritance, methods, strings and conditions.
 
 ## 2. UML class diagram
 
-![Core Builder roles](uml.svg)
+![Builder roles](uml.svg)
 
-The diagram shows the main pattern roles. Dashed arrows indicate dependencies; hollow triangles point toward an interface or superclass. The realization from AbstractReportBuilder to ReportBuilder is dashed, while concrete-builder inheritance is solid. Main chooses the two concrete builders, invokes the Director and saves the products; its concrete-builder dependencies are listed here to keep the drawing readable.
-
-Supporting types omitted from the diagram are ReportSection (an immutable section and its Kind), ReportFormat (MARKDOWN/HTML with file extensions), and TextValidation (shared input checks). The editable PlantUML source in docs/uml.puml includes the Client's creation dependencies as well.
-
-Construction flow: Main creates a fresh builder; the Director invokes fluent steps; the shared build() validates completeness; the selected renderer produces content; a new Report is returned to Main. File writing is a Client responsibility, not a Builder responsibility.
+Hollow triangles show inheritance. Dashed arrows show use or creation. Main also creates both concrete builders and prints their reports; those extra dependencies are included in the editable docs/uml.puml source. The Builder class stores data, the concrete builders format it, and the Director chooses the sequence of steps.
 
 <!-- pagebreak -->
 
-## 3. Clean Code principles - structure
+## 3. Clean Code examples
 
-### 1. Intention-revealing names
+### 1. Meaningful names
 
-The interface describes domain actions instead of generic setData() operations. A caller can read the construction chain as a sequence of report-writing steps. Source: ReportBuilder.java.
+Names describe report-writing actions. Reading this chain shows what will be built without needing extra comments. Source: Main.java.
 
 ```java
-ReportBuilder addParagraph(String heading, String text);
-ReportBuilder addBulletList(String heading, List<String> items);
-Report build();
+.setTitle("My homework")
+.addSection("Task", "Practice method chaining")
+.build();
 ```
 
-### 2. Small methods with focused responsibilities
+### 2. Small methods
 
-The HTML render() method handles the document shell and iteration. Section serialization is delegated to appendSection(); escaping has its own helper. Main handles output separately, so a formatting change does not require changing file-writing code. Source: HtmlReportBuilder.java, excerpt from render().
+Each formatting method has one task. This method formats only one plain text section; formatReport() adds the report title. Source: PlainTextReportBuilder.java.
 
 ```java
-for (ReportSection section : sections) {
-    appendSection(html, section);
+protected String formatSection(String heading, String text) {
+    return heading + "\n" + text + "\n\n";
 }
 ```
 
-### 3. Shared construction logic, without duplication
+### 3. Avoid duplicated construction logic
 
-Both concrete builders inherit the same title/section accumulation and final build() implementation. Only format() and render() vary. This prevents one builder from accepting incomplete reports while the other rejects them. The final build method centralizes product creation. Source: AbstractReportBuilder.java, final statement of build().
+Both builders inherit addSection(), so validation and adding a section are written once. The call to formatSection() uses the implementation of the selected concrete builder. Source: ReportBuilder.java.
 
 ```java
-return new Report(title, format(),
-        render(title, List.copyOf(sections)));
+checkText(heading, "Heading");
+checkText(text, "Section text");
+sections += formatSection(heading, text);
+return this;
 ```
 
-The base class is package-private because its render contract uses the internal ReportSection type. Code outside the package depends on the public ReportBuilder interface and the two concrete builders. A new representation can share the base inside the package or implement the interface independently.
+### 4. Validate the result
 
-<!-- pagebreak -->
-
-## 3. Clean Code principles - correctness
-
-### 4. Validate construction with clear failures
-
-Invalid field input is rejected when a step is called. The final build() rejects incomplete state, giving the caller a specific correction. Source: AbstractReportBuilder.java.
+build() gives a clear error when required parts are missing. There is a similar check for missing sections. Source: ReportBuilder.java.
 
 ```java
-if (title == null) {
+if (title.isBlank()) {
     throw new IllegalStateException(
-            "Report requires a title before build()");
+            "Add a title before building the report");
 }
 ```
 
-### 5. Encapsulate mutable state
+### 5. Keep fields private
 
-Report contains only immutable strings and an enum. ReportSection collects validated strings into a new unmodifiable list, preventing later changes to the caller's list from changing a report. Source: ReportSection.java.
-
-```java
-items = items.stream()
-        .map(item -> TextValidation.requireSingleLine(
-                item, "Section item"))
-        .toList();
-```
-
-### 6. Replace format strings with a named type
-
-ReportFormat defines the supported formats and extensions in one place. Main asks the product for its extension instead of repeating string comparisons. Source: ReportFormat.java and Main.java.
+Other classes read a finished report through getters. They cannot directly replace its fields. final means these fields are assigned in the constructor and cannot be reassigned. Source: Report.java.
 
 ```java
-MARKDOWN("md"),
-HTML("html");
-// Excerpt from Main.writeReport():
-Path destination = directory.resolve(
-        name + "." + report.format().extension());
-```
+private final String title;
+private final String content;
 
-### 7. Comments explain non-obvious intent
-
-The Markdown escaping helper explains why punctuation is escaped; it does not narrate the replaceAll() call. Other routine steps rely on names rather than redundant comments. Source: MarkdownReportBuilder.java.
-
-```java
-// CommonMark backslash escapes keep user-supplied punctuation literal.
-return text.replaceAll("([\\p{Punct}])", "\\\\$1");
+public String getContent() {
+    return content;
+}
 ```
 
 <!-- pagebreak -->
 
-## 4. Verification and usage
+## 4. Running and checking the program
 
-The implementation was compiled and executed with Amazon Corretto 17.0.13. Compilation uses --release 17, UTF-8 encoding, all javac warnings and warnings-as-errors. The dependency-free runner passed 43 tests. The demo generated both output/study-report.md and output/study-report.html, plus a direct fluent-API example in the console.
-
-Tests cover missing titles/sections, null or blank input, multiline fields, empty and invalid lists, fluent builder identity, caller-list mutation, stable previously built products, repeated build(), failed-step state preservation, Unicode, whitespace normalization, exact format output, escaping and a common Director recipe across both builders.
+Run Main.java in IntelliJ IDEA with JDK 17, or run the commands below from the repository folder. The first command prints a plain text report, an HTML report and a custom report built without a Director. No files or PDFs are generated by the Java program.
 
 ```bash
-bash scripts/test.sh
 bash scripts/run.sh
+bash scripts/test.sh
 ```
 
-The GitHub Actions workflow repeats compilation, tests and the demo on Java 17 for pushes and pull requests. The local results above are separate from the status of any remote workflow execution.
+The test class has five small methods. They check the plain text result, HTML output and escaped text, chaining with return this, a missing title, and missing sections. All five passed on Amazon Corretto 17.0.13. GitHub Actions is configured to run the same checks on Java 17.
 
-## 5. Conclusion: benefits and tradeoffs
+A typical call with a Director is shown below. Replacing PlainTextReportBuilder with HtmlReportBuilder changes the output representation while the Director's steps stay the same.
 
-The implementation provides one readable construction process for two useful representations. The most valuable separation is between assembling report sections and rendering markup. Shared validation and immutable products make failures predictable and prevent accidental changes to previously built results. The Director demonstrates reuse, while direct fluent construction preserves flexibility.
+```java
+ReportDirector director = new ReportDirector();
+Report report = director.createStudyReport(
+        new PlainTextReportBuilder());
+System.out.println(report.getContent());
+```
 
-A concrete issue encountered during review was that leading spaces in a Markdown paragraph could create a code block. Stripping surrounding whitespace at the field boundary fixes that behavior consistently for both formats, and a regression test records the intended contract.
+## 5. Conclusion
 
-The design also has costs. It uses more classes than a single formatting function, holds the full report in memory and requires a new enum value when adding a format. Input fields are single-line plain text; nested lists, images, raw markup and streaming output are unsupported. Builders are mutable and not thread-safe. build() intentionally does not reset state, so each Director recipe receives a fresh builder.
+Builder makes the construction steps easy to read. A client can add sections one by one, and the same Director can work with two different builders. Keeping common steps in ReportBuilder avoids repeating validation in both concrete classes.
 
-These tradeoffs suit a small teaching project. For large documents, streaming and richer section types would require additional design work. Personal defense preparation should focus on why these boundaries were chosen and when a simpler constructor or formatter would be preferable.
+One tradeoff in this implementation is choosing where to put shared code. A separate interface plus an extra base class added more types to explain. Using one abstract Builder keeps the example smaller while still sharing construction logic. Another tradeoff is using simple string concatenation: it is easy to understand for short reports, but large documents would benefit from a different approach.
 
-## 6. Repository and materials
+The pattern also adds more classes than a constructor alone. A constructor would be enough for a small object with a fixed number of fields. This example uses Builder because sections can be added gradually and two representations are required. Each new report uses a fresh builder because build() does not reset stored data.
+
+## 6. Repository
 
 [GitHub: unknow9error/aitu-software-design-pattern-assignment1](https://github.com/unknow9error/aitu-software-design-pattern-assignment1)
 
-The supplied Assignment 1 instructions define the requirements. Source, tests, UML source, example output and this report are included in the repository. The Java application needs no third-party dependencies; ReportLab is used only to generate this PDF from the Markdown report.
+The repository contains source code, a README, incremental commits, example output, UML and this report. The implementation follows the supplied Assignment 1 requirements. This PDF is a separate written report, not a feature of the Java program.

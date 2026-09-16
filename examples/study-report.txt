@@ -1,0 +1,10 @@
+My study report
+
+Topic
+The Builder pattern
+
+Goal
+Learn to create an object step by step
+
+Result
+The same steps produce plain text or HTML
